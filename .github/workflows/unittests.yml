@@ -1,0 +1,37 @@
+name: Python Unit Tests
+
+# When should this workflow run?
+on:
+  push:
+    branches: [ "main", "task-1" ] # Run when code is pushed to 'main' or 'task-1'
+  pull_request:
+    branches: [ "main" ] # Run when a Pull Request is opened against 'main'
+
+jobs:
+  build:
+    # What kind of virtual machine (runner) should be used?
+    runs-on: ubuntu-latest
+
+    steps:
+    # Step 1: Check out the code from the repository
+    - uses: actions/checkout@v4
+      with:
+        fetch-depth: 0
+
+    # Step 2: Set up the Python environment
+    - name: Set up Python 3.10
+      uses: actions/setup-python@v4
+      with:
+        python-version: '3.10'
+        cache: 'pip'
+
+    # Step 3: Install all required libraries
+    - name: Install dependencies
+      run: pip install -r requirements.txt
+
+    # Step 4: Run the unit tests
+    # We assume tests will be run using a simple test runner like pytest
+    - name: Run tests
+      run: |
+        pip install pytest # Install the testing framework
+        pytest tests/

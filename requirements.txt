@@ -1,0 +1,6 @@
+pandas
+numpy
+matplotlib
+nltk
+textblob # For sentiment analysis later
+# Add pynance and ta-lib later in Task 2
